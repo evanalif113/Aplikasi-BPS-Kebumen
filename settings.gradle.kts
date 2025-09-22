@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "BPS Sicantik Kebumen"
+rootProject.name = "BPS Kebumen"
 include(":app")
  

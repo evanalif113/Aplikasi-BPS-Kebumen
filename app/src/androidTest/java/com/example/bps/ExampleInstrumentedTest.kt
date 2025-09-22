@@ -1,4 +1,4 @@
-package com.example.sicantik
+package com.example.bps
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

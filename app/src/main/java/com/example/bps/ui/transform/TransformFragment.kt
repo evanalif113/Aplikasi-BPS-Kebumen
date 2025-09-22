@@ -1,4 +1,4 @@
-package com.example.sicantik.ui.transform
+package com.example.bps.ui.transform
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sicantik.R
-import com.example.sicantik.databinding.FragmentTransformBinding
-import com.example.sicantik.databinding.ItemTransformBinding
+import com.example.bps.R
+import com.example.bps.databinding.FragmentTransformBinding
+import com.example.bps.databinding.ItemTransformBinding
 
 /**
  * Fragment that demonstrates a responsive layout pattern where the format of the content

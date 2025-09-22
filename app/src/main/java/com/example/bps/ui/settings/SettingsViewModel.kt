@@ -1,4 +1,4 @@
-package com.example.sicantik.ui.settings
+package com.example.bps.ui.settings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

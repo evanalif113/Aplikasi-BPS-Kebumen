@@ -1,4 +1,4 @@
-package com.example.sicantik
+package com.example.bps
 
 import org.junit.Test
 

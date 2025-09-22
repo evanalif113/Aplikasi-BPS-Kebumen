@@ -1,4 +1,4 @@
-package com.example.sicantik.ui.slideshow
+package com.example.bps.ui.slideshow
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

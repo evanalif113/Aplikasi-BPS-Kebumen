@@ -1,4 +1,4 @@
-package com.example.sicantik
+package com.example.bps
 
 import android.os.Bundle
 import android.view.Menu
@@ -12,7 +12,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.appcompat.app.AppCompatActivity
-import com.example.sicantik.databinding.ActivityMainBinding
+import com.example.bps.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
