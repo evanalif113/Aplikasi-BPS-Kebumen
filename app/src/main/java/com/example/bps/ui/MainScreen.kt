@@ -3,6 +3,7 @@ package com.example.meteosense.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -31,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
@@ -38,6 +40,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.bps.R
 import com.example.bps.ui.beranda.BerandaScreen
+import com.example.bps.ui.statistik.StatistikScreen
+import com.example.bps.ui.search.SearchScreen
 import com.example.bps.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class) // Opt Developer
@@ -51,35 +55,28 @@ fun MenuScreen() {
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             TopAppBar(
-                navigationIcon = {
-                    IconButton(onClick = { /* TODO: Aksi untuk membuka drawer */ }) {
+                title = {
+                    Text(text = stringResource(id = R.string.app_name))
+                },
+                actions = {
+                    IconButton(onClick = { /* Aksi Notifikasi */ }) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                            contentDescription = "Navigation Menu"
+                            painter = painterResource(id = R.drawable.ic_bell_24dp),
+                            contentDescription = "Notifications"
+                        )
+                    }
+                    IconButton(onClick = { /* Aksi Pengaturan */ }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_settings_24dp),
+                            contentDescription = "Settings"
                         )
                     }
                 },
-                title = {
-                    Text(text = stringResource(id = R.string.app_name))
-
-                },
-                actions = {
-                    IconButton(onClick = { showMenu = !showMenu }) {
-                        Icon(Icons.Default.Notifications,
-                            contentDescription = "Settings")
-                    }
-                    IconButton(onClick = { showMenu = !showMenu }) {
-                        Icon(painterResource(id = R.drawable.ic_settings_24dp),
-                            contentDescription = "Settings")
-                    }
-                },
-                // --- PERUBAHAN DI SINI ---
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Gray200, // Mengatur warna background
-                    titleContentColor = White,       // Mengatur warna teks judul
-                    actionIconContentColor = White   // Mengatur warna ikon
+                    containerColor = Green400,
+                    titleContentColor = Black,
+                    actionIconContentColor = Black
                 )
-                // -------------------------
             )
         },
         bottomBar = {
@@ -109,7 +106,14 @@ fun MenuScreen() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable("beranda") { BerandaScreen() }
-            // Tambahkan tujuan navigasi lainnya di sini
+            composable("statistik") { StatistikScreen() }
+            composable("search") { SearchScreen() }
         }
     }
+}
+
+@Preview(showBackground = true, apiLevel = 36)
+@Composable
+fun MenuScreenPreview() {
+    MenuScreen()
 }
