@@ -9,13 +9,13 @@
         android:strokeWidth="2"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
-        android:pathData="M3,3 V19 A2,2 0,0 0,5 21 H21"/>
+        android:pathData="M15,21 V13 A1,1 0,0 0,14 12 H10 A1,1 0,0 0,9 13 V21"/>
 
     <path
         android:strokeColor="#FF000000"
         android:strokeWidth="2"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"
-        android:pathData="m19,9 l-5,5 -4,-4 -3,3"/>
+        android:pathData="M3,10 a2,2 0,0 1,0.709 -1.528 l7,-6 a2,2 0,0 1,2.582 0 l7,6 A2,2 0,0 1,21 10 v9 a2,2 0,0 1,-2 2 H5 a2,2 0,0 1,-2 -2z"/>
 
 </vector>
