@@ -1,91 +1,108 @@
-package com.example.bps.ui
+package com.example.meteosense.ui
 
-import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.bps.R
-import com.example.bps.databinding.ActivityMainBinding
-import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
+import com.example.bps.ui.beranda.BerandaScreen
+import com.example.bps.theme.*
 
-class MainScreen : AppCompatActivity() {
+@OptIn(ExperimentalMaterial3Api::class) // Opt Developer
+@Composable
+fun MenuScreen() {
+    val navController = rememberNavController()
+    var showMenu by remember { mutableStateOf(false) }
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                navigationIcon = {
+                    IconButton(onClick = { /* TODO: Aksi untuk membuka drawer */ }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                            contentDescription = "Navigation Menu"
+                        )
+                    }
+                },
+                title = {
+                    Text(text = stringResource(id = R.string.app_name))
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setSupportActionBar(binding.appBarMain.toolbar)
-
-        binding.appBarMain.fab?.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
-        }
-
-        val navHostFragment =
-            (supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment?)!!
-        val navController = navHostFragment.navController
-
-        binding.navView?.let {
-            appBarConfiguration = AppBarConfiguration(
-                setOf(
-                    R.id.nav_transform,
-                    R.id.nav_reflow,
-                    R.id.nav_slideshow,
-                    R.id.nav_settings
-                ),
-                binding.drawerLayout
-            )
-            setupActionBarWithNavController(navController, appBarConfiguration)
-            it.setupWithNavController(navController)
-        }
-
-        binding.appBarMain.contentMain.bottomNavView?.let {
-            appBarConfiguration = AppBarConfiguration(
-                setOf(
-                    R.id.nav_transform, R.id.nav_reflow, R.id.nav_slideshow
+                },
+                actions = {
+                    IconButton(onClick = { showMenu = !showMenu }) {
+                        Icon(Icons.Default.Notifications,
+                            contentDescription = "Settings")
+                    }
+                    IconButton(onClick = { showMenu = !showMenu }) {
+                        Icon(painterResource(id = R.drawable.ic_settings_24dp),
+                            contentDescription = "Settings")
+                    }
+                },
+                // --- PERUBAHAN DI SINI ---
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Teal600, // Mengatur warna background
+                    titleContentColor = White,       // Mengatur warna teks judul
+                    actionIconContentColor = White   // Mengatur warna ikon
                 )
+                // -------------------------
             )
-            setupActionBarWithNavController(navController, appBarConfiguration)
-            it.setupWithNavController(navController)
-        }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        val result = super.onCreateOptionsMenu(menu)
-        // Using findViewById because NavigationView exists in different layout files
-        // between w600dp and w1240dp
-        val navView: NavigationView? = findViewById(R.id.nav_view)
-        if (navView == null) {
-            // The navigation drawer already has the items including the items in the overflow menu
-            // We only inflate the overflow menu if the navigation drawer isn't visible
-            menuInflater.inflate(R.menu.overflow, menu)
-        }
-        return result
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.nav_settings -> {
-                val navController = findNavController(R.id.nav_host_fragment_content_main)
-                navController.navigate(R.id.nav_settings)
+        },
+        bottomBar = {
+            BottomAppBar {
+                val icons = listOf(
+                    "Beranda" to R.drawable.ic_beranda_24dp,
+                    "Statistik" to R.drawable.ic_grafik_24dp,
+                    "Search" to R.drawable.ic_server_24dp
+                )
+                icons.forEach { (title, iconRes) ->
+                    NavigationBarItem(
+                        icon = { Icon(painterResource(id = iconRes), contentDescription = title) },
+                        label = { Text(title) },
+                        selected = navController.currentDestination?.route == title.lowercase(),
+                        onClick = { navController.navigate(title.lowercase()) }
+                    )
+                }
             }
         }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    ) { innerPadding ->
+        NavHost(
+            navController = navController,
+            startDestination = "beranda",
+            modifier = Modifier.padding(innerPadding)
+        ) {
+            composable("beranda") { BerandaScreen() }
+            // Tambahkan tujuan navigasi lainnya di sini
+        }
     }
 }
