@@ -10,16 +10,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.DockedSearchBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,18 +36,27 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bps.R
-import com.example.bps.theme.*
+import com.example.bps.theme.Gray200
+import com.example.bps.theme.Gray300
 
 @Composable
 fun BerandaScreen() {
-    Column(modifier = Modifier.padding(vertical = 16.dp)) {
+    // Column sekarang bisa di-scroll untuk mengakomodasi lebih banyak konten
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+    ) {
         Text(
             text = "Beranda",
             style = MaterialTheme.typography.titleLarge,
-            modifier = Modifier.padding(horizontal = 26.dp)
+            modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
         CardCarousel()
+        Spacer(modifier = Modifier.height(24.dp))
+        // Menambahkan SearchBar di sini
+        SearchBar()
     }
 }
 
@@ -52,15 +65,11 @@ fun BerandaScreen() {
  */
 @Composable
 fun CardCarousel() {
-    // LazyRow digunakan untuk efisiensi, hanya merender item yang terlihat di layar.
     LazyRow(
-        // Memberi padding di sisi kiri dan kanan daftar
         contentPadding = PaddingValues(horizontal = 16.dp),
-        // Mengatur jarak antar setiap kartu
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // Menampilkan 5 kartu sebagai contoh
-        items(7) {
+        items(5) {
             CarouselItem()
         }
     }
@@ -72,28 +81,54 @@ fun CardCarousel() {
 @Composable
 fun CarouselItem() {
     Card(
-        modifier = Modifier.size(100.dp), // Ukuran kartu
+        modifier = Modifier.size(100.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Gray200)
     ) {
-        // Box digunakan untuk menempatkan ikon di tengah kartu
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier.fillMaxSize()
         ) {
-            // Ikon placeholder
             Icon(
                 painter = painterResource(id = R.drawable.ic_open_book_24dp),
                 contentDescription = "Placeholder Icon",
                 modifier = Modifier.size(48.dp),
-                tint = Green700
+                tint = Gray300
             )
         }
     }
 }
 
+/**
+ * Composable untuk Search Bar.
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SearchBar() {
+    var text by remember { mutableStateOf("") }
 
-@Preview(showBackground = true, apiLevel = 36)
+    TextField(
+        value = text,
+        onValueChange = { text = it },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        placeholder = { Text("Cari data statistik...") },
+        trailingIcon = { Icon(Icons.Default.Search, contentDescription = "Search Icon") },
+        shape = RoundedCornerShape(16.dp),
+        colors = TextFieldDefaults.colors(
+            unfocusedContainerColor = Gray200,
+            focusedContainerColor = Gray200,
+            // Menghilangkan garis indikator di bawah
+            unfocusedIndicatorColor = Color.Transparent,
+            focusedIndicatorColor = Color.Transparent
+        ),
+        singleLine = true
+    )
+}
+
+
+@Preview(showBackground = true)
 @Composable
 fun BerandaScreenPreview() {
     BerandaScreen()
