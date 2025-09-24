@@ -3,6 +3,7 @@ package com.example.meteosense.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -69,7 +70,9 @@ fun MenuScreen() {
                         DropdownMenu(
                             expanded = showNotif,
                             onDismissRequest = { showNotif = false },
-                            modifier = Modifier.padding(10.dp)
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp)
                         ) {
                             DropdownMenuItem(
                                 text = {
@@ -93,7 +96,7 @@ fun MenuScreen() {
                             )
                         }
                     }
-                    IconButton(onClick = { /* Aksi Pengaturan */ }) {
+                    IconButton(onClick = { showSettings = !showSettings }) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_settings_24dp),
                             contentDescription = "Settings"
@@ -141,7 +144,7 @@ fun MenuScreen() {
     }
 }
 
-@Preview(showBackground = true, apiLevel = 36)
+@Preview
 @Composable
 fun MenuScreenPreview() {
     MenuScreen()

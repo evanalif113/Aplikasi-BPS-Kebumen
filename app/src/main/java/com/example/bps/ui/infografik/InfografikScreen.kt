@@ -11,9 +11,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bps.ui.beranda.CardCarousel
 import com.example.bps.components.SearchBar
+import com.example.bps.ui.search.SearchScreen
 
 @Composable
 fun InfografikScreen() {
@@ -34,4 +36,10 @@ fun InfografikScreen() {
         // Menambahkan SearchBar di sini
         SearchBar()
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun InfografikScreenPreview() {
+    InfografikScreen()
 }
