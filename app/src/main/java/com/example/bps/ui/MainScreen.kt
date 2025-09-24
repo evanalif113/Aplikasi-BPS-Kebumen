@@ -42,13 +42,15 @@ import com.example.bps.R
 import com.example.bps.ui.beranda.BerandaScreen
 import com.example.bps.ui.statistik.StatistikScreen
 import com.example.bps.ui.search.SearchScreen
+import com.example.bps.ui.infografik.InfografikScreen
 import com.example.bps.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class) // Opt Developer
 @Composable
 fun MenuScreen() {
     val navController = rememberNavController()
-    var showMenu by remember { mutableStateOf(false) }
+    var showNotif by remember { mutableStateOf(false) }
+    var showSettings by remember { mutableStateOf(false) }
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
     Scaffold(
@@ -59,11 +61,37 @@ fun MenuScreen() {
                     Text(text = stringResource(id = R.string.app_name))
                 },
                 actions = {
-                    IconButton(onClick = { /* Aksi Notifikasi */ }) {
+                    IconButton(onClick = { showNotif = !showNotif }) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_bell_24dp),
                             contentDescription = "Notifications"
                         )
+                        DropdownMenu(
+                            expanded = showNotif,
+                            onDismissRequest = { showNotif = false },
+                            modifier = Modifier.padding(10.dp)
+                        ) {
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        stringResource(R.string.pengaturan),
+                                        color = Gray800,
+                                        fontSize = 16.sp
+                                    )
+                                },
+                                onClick = { /* Handle settings click */ }
+                            )
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        stringResource(R.string.pengaturan),
+                                        color = Gray800,
+                                        fontSize = 16.sp
+                                    )
+                                },
+                                onClick = { /* Handle about click */ }
+                            )
+                        }
                     }
                     IconButton(onClick = { /* Aksi Pengaturan */ }) {
                         Icon(
@@ -108,6 +136,7 @@ fun MenuScreen() {
             composable("beranda") { BerandaScreen() }
             composable("statistik") { StatistikScreen() }
             composable("search") { SearchScreen() }
+            composable("infografik") { InfografikScreen() }
         }
     }
 }
