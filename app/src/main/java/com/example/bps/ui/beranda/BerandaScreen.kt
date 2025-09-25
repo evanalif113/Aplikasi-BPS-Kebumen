@@ -26,8 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bps.R
 import com.example.bps.components.SearchBar
-import com.example.bps.theme.Gray200
-import com.example.bps.theme.Gray300
+import com.example.bps.theme.*
 
 @Composable
 fun BerandaScreen() {
@@ -47,6 +46,8 @@ fun BerandaScreen() {
         Spacer(modifier = Modifier.height(24.dp))
         // Menambahkan SearchBar di sini
         SearchBar()
+        Spacer(modifier = Modifier.height(24.dp))
+        CardCarousel()
     }
 }
 
@@ -83,7 +84,7 @@ fun CarouselItem() {
                 painter = painterResource(id = R.drawable.ic_open_book_24dp),
                 contentDescription = "Placeholder Icon",
                 modifier = Modifier.size(48.dp),
-                tint = Gray300
+                tint = Green600
             )
         }
     }
