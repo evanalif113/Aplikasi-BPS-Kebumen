@@ -13,7 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.bps.ui.beranda.CardCarousel
+import com.example.bps.components.Carousel
 import com.example.bps.components.SearchBar
 import com.example.bps.ui.search.SearchScreen
 
@@ -31,7 +31,7 @@ fun InfografikScreen() {
             modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
-        CardCarousel()
+        Carousel()
         Spacer(modifier = Modifier.height(24.dp))
         // Menambahkan SearchBar di sini
         SearchBar()
