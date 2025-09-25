@@ -1,4 +1,4 @@
-package com.example.meteosense.ui
+package com.example.bps.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
