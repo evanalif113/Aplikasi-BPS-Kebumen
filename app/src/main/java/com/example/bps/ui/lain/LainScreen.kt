@@ -1,4 +1,4 @@
-package com.example.bps.ui.infografik
+package com.example.bps.ui.lain
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,7 +17,7 @@ import com.example.bps.components.Carousel
 import com.example.bps.components.SearchBar
 
 @Composable
-fun InfografikScreen() {
+fun LainScreen() {
     // Column sekarang bisa di-scroll untuk mengakomodasi lebih banyak konten
     Column(
         modifier = Modifier
@@ -39,6 +39,6 @@ fun InfografikScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun InfografikScreenPreview() {
-    InfografikScreen()
+fun LainScreenPreview() {
+    LainScreen()
 }

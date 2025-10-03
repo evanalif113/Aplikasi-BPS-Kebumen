@@ -46,6 +46,7 @@ import com.example.bps.ui.beranda.BerandaScreen
 import com.example.bps.ui.statistik.StatistikScreen
 import com.example.bps.ui.search.SearchScreen
 import com.example.bps.ui.infografik.InfografikScreen
+import com.example.bps.ui.lain.LainScreen
 import com.example.bps.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class) // Opt Developer
@@ -122,7 +123,6 @@ fun MenuScreen() {
                     "Search" to R.drawable.ic_search_24dp,
                     "Infografik" to R.drawable.ic_open_book_24dp,
                     "Lainnya" to R.drawable.ic_menu_24dp
-
                 )
                 icons.forEach { (title, iconRes) ->
                     NavigationBarItem(
@@ -152,6 +152,7 @@ fun MenuScreen() {
             composable("statistik") { StatistikScreen() }
             composable("search") { SearchScreen() }
             composable("infografik") { InfografikScreen() }
+            composable("lainnnya") { LainScreen() }
         }
     }
 }
