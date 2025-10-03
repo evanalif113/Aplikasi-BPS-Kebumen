@@ -102,7 +102,7 @@ private fun StatCategoryCard(
                 .padding(horizontal = 12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
+            Icon(/
                 painter = painterResource(id = iconRes),
                 contentDescription = title,
                 tint = Color.Unspecified,
