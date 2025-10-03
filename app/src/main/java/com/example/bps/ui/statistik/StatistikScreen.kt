@@ -60,7 +60,7 @@ fun StatistikScreen() {
             backgroundColor = Color(0xFFDD7F06), // Orange
             iconRes = R.drawable.ic_open_book_24dp, // replace with correct icon resource
             title = "Statistik Demografi dan Sosial",
-            showArrow = false
+            showArrow = true
         )
         Spacer(modifier = Modifier.height(12.dp))
         StatCategoryCard(
@@ -102,7 +102,7 @@ private fun StatCategoryCard(
                 .padding(horizontal = 12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(/
+            Icon(
                 painter = painterResource(id = iconRes),
                 contentDescription = title,
                 tint = Color.Unspecified,
