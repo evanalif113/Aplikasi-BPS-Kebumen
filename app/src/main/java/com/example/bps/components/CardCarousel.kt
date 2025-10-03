@@ -31,36 +31,6 @@ import com.example.bps.R
 import com.example.bps.theme.*
 
 /**
- * Composable yang menampilkan daftar kartu secara horizontal (Carousel).
- */
-@Composable
-fun Carousel() {
-    // 2. Menyiapkan daftar data untuk setiap kartu
-    val carouselData = listOf(
-        Triple(Blue200, R.drawable.ic_grafik_24dp, "Statistik Pertanian"),
-        Triple(Green200, R.drawable.ic_perangkat_24dp, "Produk Domestik"),
-        Triple(Orange200, R.drawable.ic_server_24dp, "Inflasi Bulanan"),
-        Triple(Red200, R.drawable.ic_house_24dp, "Indeks Kemahalan"),
-        Triple(Purple200, R.drawable.ic_info_24dp, "Info Lainnya")
-    )
-
-    LazyRow(
-        contentPadding = PaddingValues(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        // 3. Menampilkan setiap item dari daftar data menggunakan CarouselItem
-        items(carouselData.size) { index ->
-            val (color, iconRes, title) = carouselData[index]
-            CarouselItem(
-                color = color,
-                iconRes = iconRes,
-                title = title
-            )
-        }
-    }
-}
-
-/**
  * Composable untuk satu item kartu di dalam carousel.
  * Komponen ini sekarang dinamis dan bisa digunakan kembali.
  *

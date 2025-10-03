@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -70,16 +71,17 @@ fun MainMenuSection() {
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = Blue200)
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF1E88E5)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp),
+                .padding(16.dp),
             horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            MainMenuItem(iconRes = R.drawable.ic_open_book_24dp, title = "Infografi\ndan Berita")
+            MainMenuItem(iconRes = R.drawable.ic_open_book_24dp, title = "Infografis")
             MainMenuItem(iconRes = R.drawable.ic_grafik_24dp, title = "Statistik")
             MainMenuItem(iconRes = R.drawable.ic_menu_24dp, title = "Lainnya")
         }
@@ -89,31 +91,38 @@ fun MainMenuSection() {
 // 4. Composable untuk setiap item di dalam Menu Utama
 @Composable
 fun MainMenuItem(iconRes: Int, title: String) {
-    Card(
-        modifier = Modifier
-            .width(100.dp)
-            .height(80.dp),
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = White)
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+        Card(
+            modifier = Modifier
+                .width(100.dp)
+                .height(90.dp),
+            shape = RoundedCornerShape(12.dp),
+            colors = CardDefaults.cardColors(containerColor = White),
+            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
-            Icon(
-                painter = painterResource(id = iconRes),
-                contentDescription = title,
-                tint = Orange500
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = title,
-                textAlign = TextAlign.Center,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.SemiBold
-            )
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    painter = painterResource(id = iconRes),
+                    contentDescription = title,
+                    tint = Color(0xFFFF9800),
+                    modifier = Modifier.size(32.dp)
+                )
+            }
         }
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text = title,
+            textAlign = TextAlign.Center,
+            fontSize = 11.sp,
+            fontWeight = FontWeight.Medium,
+            color = Color.White
+        )
     }
 }
 
@@ -132,7 +141,7 @@ fun InfoSensusSection() {
         SensusBanner(
             imageRes = R.drawable.ic_open_book_24dp,
             contentDescription = "Sensus Penduduk 2020",
-            backgroundColor = Blue500
+            backgroundColor = Sky500
         )
         Spacer(modifier = Modifier.height(16.dp))
         SensusBanner(
