@@ -81,25 +81,25 @@ fun MainMenuSection() {
             horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            MainMenuItem(iconRes = R.drawable.ic_open_book_24dp, title = "Infografis")
-            MainMenuItem(iconRes = R.drawable.ic_grafik_24dp, title = "Statistik")
-            MainMenuItem(iconRes = R.drawable.ic_menu_24dp, title = "Lainnya")
+            MainMenuItem(iconRes = R.drawable.ic_open_book_24dp, title = "Infografis", color = Orange500)
+            MainMenuItem(iconRes = R.drawable.ic_grafik_24dp, title = "Statistik", color = Green500)
+            MainMenuItem(iconRes = R.drawable.ic_search_24dp, title = "Search", color = Blue500)
+            MainMenuItem(iconRes = R.drawable.ic_menu_24dp, title = "Lainnya", color = Gray500)
         }
     }
 }
 
 // 4. Composable untuk setiap item di dalam Menu Utama
 @Composable
-fun MainMenuItem(iconRes: Int, title: String) {
+fun MainMenuItem(iconRes: Int, title: String, color: Color) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Card(
             modifier = Modifier
-                .width(100.dp)
-                .height(90.dp),
-            shape = RoundedCornerShape(12.dp),
+                .size(72.dp),
+            shape = RoundedCornerShape(16.dp),
             colors = CardDefaults.cardColors(containerColor = White),
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
@@ -110,8 +110,8 @@ fun MainMenuItem(iconRes: Int, title: String) {
                 Icon(
                     painter = painterResource(id = iconRes),
                     contentDescription = title,
-                    tint = Color(0xFFFF9800),
-                    modifier = Modifier.size(32.dp)
+                    tint = color,
+                    modifier = Modifier.size(40.dp)
                 )
             }
         }
@@ -119,9 +119,10 @@ fun MainMenuItem(iconRes: Int, title: String) {
         Text(
             text = title,
             textAlign = TextAlign.Center,
-            fontSize = 11.sp,
+            fontSize = 12.sp,
             fontWeight = FontWeight.Medium,
-            color = Color.White
+            color = Color.White,
+            lineHeight = 14.sp
         )
     }
 }
