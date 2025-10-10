@@ -1,6 +1,5 @@
 package com.example.bps.ui.beranda
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -24,7 +22,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -33,13 +30,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bps.R
 import com.example.bps.components.SearchBar
-import com.example.bps.components.CardCarousel
+import com.example.bps.components.CardInsight
+import com.example.bps.components.NewsSection
 import com.example.bps.theme.*
 
 // 1. Tampilan utama BerandaScreen
 @Composable
 fun BerandaScreen() {
-    // Column ini sudah benar untuk membuat seluruh layar bisa di-scroll
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -47,7 +44,7 @@ fun BerandaScreen() {
             .padding(vertical = 16.dp)
     ) {
         // Carousel Section menggunakan CardCarousel
-        CardCarousel()
+        CardInsight()
         Spacer(modifier = Modifier.height(24.dp))
 
         // SearchBar di bagian atas
@@ -60,6 +57,9 @@ fun BerandaScreen() {
 
         // Bagian Info Sensus
         InfoSensusSection()
+        Spacer(modifier = Modifier.height(24.dp))
+
+        NewsSection()
     }
 }
 
@@ -69,9 +69,9 @@ fun MainMenuSection() {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 10.dp),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF1E88E5)),
+        colors = CardDefaults.cardColors(containerColor = White),
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
         Row(
@@ -81,17 +81,17 @@ fun MainMenuSection() {
             horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            MainMenuItem(iconRes = R.drawable.ic_open_book_24dp, title = "Infografis", color = Orange500)
-            MainMenuItem(iconRes = R.drawable.ic_grafik_24dp, title = "Statistik", color = Green500)
-            MainMenuItem(iconRes = R.drawable.ic_search_24dp, title = "Search", color = Blue500)
-            MainMenuItem(iconRes = R.drawable.ic_menu_24dp, title = "Lainnya", color = Gray500)
+            MainMenuItem(iconRes = R.drawable.ic_maps_24dp, title = "Peta", colorCard = Blue400)
+            MainMenuItem(iconRes = R.drawable.ic_grafik_24dp, title = "Statistik", colorCard = Orange300)
+            MainMenuItem(iconRes = R.drawable.ic_search_24dp, title = "Infografi", colorCard = Red300)
+            MainMenuItem(iconRes = R.drawable.ic_menu_24dp, title = "Lainnya", colorCard = Green300)
         }
     }
 }
 
 // 4. Composable untuk setiap item di dalam Menu Utama
 @Composable
-fun MainMenuItem(iconRes: Int, title: String, color: Color) {
+fun MainMenuItem(iconRes: Int, title: String, colorCard: Color) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -100,7 +100,7 @@ fun MainMenuItem(iconRes: Int, title: String, color: Color) {
             modifier = Modifier
                 .size(72.dp),
             shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(containerColor = White),
+            colors = CardDefaults.cardColors(containerColor = colorCard),
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
             Box(
@@ -110,7 +110,7 @@ fun MainMenuItem(iconRes: Int, title: String, color: Color) {
                 Icon(
                     painter = painterResource(id = iconRes),
                     contentDescription = title,
-                    tint = color,
+                    tint = Black,
                     modifier = Modifier.size(40.dp)
                 )
             }
@@ -121,7 +121,7 @@ fun MainMenuItem(iconRes: Int, title: String, color: Color) {
             textAlign = TextAlign.Center,
             fontSize = 12.sp,
             fontWeight = FontWeight.Medium,
-            color = Color.White,
+            color = Color.Black,
             lineHeight = 14.sp
         )
     }
@@ -136,25 +136,26 @@ fun InfoSensusSection() {
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold
         )
+
         Spacer(modifier = Modifier.height(16.dp))
-        
-        // Banner Sensus dengan gambar yang sesuai
         SensusBanner(
             imageRes = R.drawable.ic_open_book_24dp,
             contentDescription = "Sensus Penduduk 2020",
-            backgroundColor = Sky500
+            backgroundColor = Sky300
         )
+
         Spacer(modifier = Modifier.height(16.dp))
         SensusBanner(
             imageRes = R.drawable.ic_open_book_24dp,
             contentDescription = "Sensus Pertanian 2023",
-            backgroundColor = Green500
+            backgroundColor = Green300
         )
+
         Spacer(modifier = Modifier.height(16.dp))
         SensusBanner(
             imageRes = R.drawable.ic_open_book_24dp,
             contentDescription = "Sensus Ekonomi 2026",
-            backgroundColor = Orange500
+            backgroundColor = Orange300
         )
     }
 }
@@ -165,7 +166,7 @@ fun SensusBanner(imageRes: Int, contentDescription: String, backgroundColor: Col
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(80.dp),
+            .height(100.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
@@ -196,6 +197,12 @@ fun SensusBanner(imageRes: Int, contentDescription: String, backgroundColor: Col
                 )
             }
         }
+    }
+}
+
+@Composable
+fun NewsInsightsSection() {
+    Column(modifier = Modifier.padding(horizontal = 16.dp)) {
     }
 }
 

@@ -1,7 +1,6 @@
 package com.example.bps.components
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -11,9 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -60,6 +57,12 @@ fun Carousel() {
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun CarouselPreview() {
+    Carousel()
+}
+
 /**
  * Composable untuk satu item kartu di dalam carousel.
  * Komponen ini sekarang dinamis dan bisa digunakan kembali.
@@ -72,13 +75,13 @@ fun Carousel() {
  * Composable yang menampilkan daftar kartu secara horizontal (Carousel).
  */
 @Composable
-fun CardCarousel() {
+fun CardInsight() {
     val carouselData = listOf(
-        Triple(Blue200, R.drawable.ic_grafik_24dp, "Statistik Pertanian"),
-        Triple(Green200, R.drawable.ic_perangkat_24dp, "Produk Domestik"),
-        Triple(Orange200, R.drawable.ic_server_24dp, "Inflasi Bulanan"),
-        Triple(Red200, R.drawable.ic_house_24dp, "Indeks Kemahalan"),
-        Triple(Purple200, R.drawable.ic_info_24dp, "Info Lainnya")
+        Triple(Blue400, R.drawable.ic_grafik_24dp, "Statistik Pertanian"),
+        Triple(Green400, R.drawable.ic_perangkat_24dp, "Produk Domestik"),
+        Triple(Orange400, R.drawable.ic_server_24dp, "Inflasi Bulanan"),
+        Triple(Red400, R.drawable.ic_house_24dp, "Indeks Kemahalan"),
+        Triple(Purple400, R.drawable.ic_info_24dp, "Info Lainnya")
     )
 
     LazyRow(
@@ -94,6 +97,12 @@ fun CardCarousel() {
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CardInsightPreview() {
+    CardInsight()
 }
 
 /**
@@ -135,4 +144,14 @@ fun CarouselItem(
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CarouselItemPreview() {
+    CarouselItem(
+        color = Blue200,
+        iconRes = R.drawable.ic_grafik_24dp,
+        title = "Statistik Pertanian"
+    )
 }

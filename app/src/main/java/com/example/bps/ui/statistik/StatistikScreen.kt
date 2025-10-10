@@ -33,7 +33,10 @@ fun StatistikScreen() {
         // Title
         Row(
             modifier = Modifier
-                .padding(top = 16.dp, start = 16.dp, end = 16.dp),
+                .padding(
+                    top = 16.dp,
+                    start = 16.dp,
+                    end = 16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
@@ -57,21 +60,21 @@ fun StatistikScreen() {
 
         // Category Cards
         StatCategoryCard(
-            backgroundColor = Color(0xFFDD7F06), // Orange
+            backgroundColor = Color(0xFF008AD4), // Orange
             iconRes = R.drawable.ic_open_book_24dp, // replace with correct icon resource
             title = "Statistik Demografi dan Sosial",
             showArrow = true
         )
         Spacer(modifier = Modifier.height(12.dp))
         StatCategoryCard(
-            backgroundColor = Color(0xFF54A506), // Green
+            backgroundColor = Color(0xFFDD7F06), // Green
             iconRes = R.drawable.ic_grafik_24dp, // replace with correct icon resource
             title = "Statistik Ekonomi",
             showArrow = true
         )
         Spacer(modifier = Modifier.height(12.dp))
         StatCategoryCard(
-            backgroundColor = Color(0xFF008AD4), // Blue
+            backgroundColor = Color(0xFF54A506), // Blue
             iconRes = R.drawable.ic_info_24dp, // replace with correct icon resource
             title = "Statistik Lingkungan Hidup dan Multi Domain",
             showArrow = true
